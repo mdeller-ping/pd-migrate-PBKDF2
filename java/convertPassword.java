@@ -12,16 +12,20 @@ public class convertPassword {
         // command line arguments
 
         if (args.length != 3) {
-            System.err.println ("java convertPassword base64Salt encodedPassword rounds");
+            System.err.println ("java convertPassword <base64Salt> <encodedPassword> <rounds>");
             System.exit(1);
         }
 
-            base64Salt = args[0];
-            encodedPassword = args[1];
-            rounds = Integer.parseInt(args[2]);
+        base64Salt = args[0];
+        encodedPassword = args[1];
+        rounds = Integer.parseInt(args[2]);
 
+        // SHA1 = 0x00
+        // SHA256 = 0x01
+        // SHA384 = 0x02
+        // SHA512 = 0x03
 
-        byte cipherVersion = 0x00; // SHA1
+        byte cipherVersion = 0x00;
 
         byte[] iterations = BigInteger.valueOf(rounds.longValue()).toByteArray();
 
